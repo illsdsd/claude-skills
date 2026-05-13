@@ -118,16 +118,12 @@ const BLOCK_TYPE_KEY = {
 const HEADING_LEVEL = { 3: 1, 4: 2, 5: 3, 6: 4, 7: 5, 8: 6, 9: 7 };
 
 // 将 text_run elements 数组转为内联 Markdown 字符串
-function elementsToInline(elements) {
+function elementsToInline(elements, imageTokens) {
   if (!elements) return "";
   return elements.map((el) => {
     if (el.text_run) {
       let text = el.text_run.content || "";
       const style = el.text_run.text_element_style || {};
-      // 转义 Markdown 特殊字符（在非代码模式下）
-      if (!style.inline_code) {
-        // 只转义可能破坏格式的字符
-      }
       if (style.inline_code) text = `\`${text}\``;
       if (style.bold) text = `**${text}**`;
       if (style.italic) text = `*${text}*`;
@@ -143,6 +139,12 @@ function elementsToInline(elements) {
     if (el.mention_doc) return `[${el.mention_doc.title || "文档"}](${el.mention_doc.url || ""})`;
     if (el.mention_date) return el.mention_date.value || "";
     if (el.equation) return `$${el.equation.content || ""}$`;
+    if (el.inline_file && imageTokens) {
+      const fileToken = el.inline_file.file_token;
+      const filename = fileToken + ".png";
+      imageTokens.set(fileToken, filename);
+      return `![${filename}](image/${filename})`;
+    }
     return "";
   }).join("");
 }
@@ -176,28 +178,28 @@ function blockToMarkdown(block, imageTokens, listContext) {
   // Heading
   if (HEADING_LEVEL[bt]) {
     const level = HEADING_LEVEL[bt];
-    const text = elementsToInline(data.elements);
+    const text = elementsToInline(data.elements, imageTokens);
     const prefix = "#".repeat(level) + " ";
     return prefix + text + "\n";
   }
 
   // Paragraph / Text
   if (bt === 2) {
-    const text = elementsToInline(data.elements);
+    const text = elementsToInline(data.elements, imageTokens);
     if (!text.trim()) return "\n";
     return text + "\n";
   }
 
   // Bullet list
   if (bt === 12) {
-    const text = elementsToInline(data.elements);
+    const text = elementsToInline(data.elements, imageTokens);
     const indent = "  ".repeat(listContext.depth || 0);
     return indent + "- " + text + "\n";
   }
 
   // Ordered list
   if (bt === 13) {
-    const text = elementsToInline(data.elements);
+    const text = elementsToInline(data.elements, imageTokens);
     const depth = listContext.depth || 0;
     const num = getOrderedNumber(data.style?.sequence, depth);
     const indent = "  ".repeat(depth);
@@ -206,14 +208,14 @@ function blockToMarkdown(block, imageTokens, listContext) {
 
   // Code block
   if (bt === 14) {
-    const code = elementsToInline(data.elements);
+    const code = elementsToInline(data.elements, imageTokens);
     const lang = data.style?.language || "";
     return "```" + lang + "\n" + code + "\n```\n";
   }
 
   // Quote
   if (bt === 15) {
-    const text = elementsToInline(data.elements);
+    const text = elementsToInline(data.elements, imageTokens);
     return "> " + text + "\n";
   }
 
@@ -226,6 +228,17 @@ function blockToMarkdown(block, imageTokens, listContext) {
     const filename = imgToken + ".png";
     imageTokens.set(imgToken, filename);
     return `![${filename}](image/${filename})\n`;
+  }
+
+  // File (embedded file / image)
+  if (bt === 31) {
+    const fileToken = data.token;
+    if (fileToken) {
+      const filename = fileToken + ".png";
+      imageTokens.set(fileToken, filename);
+      return `![${filename}](image/${filename})\n`;
+    }
+    return "";
   }
 
   // Table - simplified, just note it
