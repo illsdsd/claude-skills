@@ -1,0 +1,49 @@
+{
+  "sources": [
+    {
+      "seq": 1,
+      "id": 7070,
+      "name": "accore_mer_account(CDS:mysql)"
+    },
+    {
+      "seq": 2,
+      "id": 8848,
+      "name": "acc_his(CDS:mysql)"
+    },
+    {
+      "seq": 3,
+      "id": 16080,
+      "name": "cloud_account_trade(CDS:mysql)"
+    },
+    {
+      "seq": 4,
+      "id": 16742,
+      "name": "acc_his_plus(CDS:mysql)"
+    },
+    {
+      "seq": 5,
+      "id": 32651,
+      "name": "account_req(CDS:mysql)"
+    },
+    {
+      "seq": 6,
+      "id": 36927,
+      "name": "person_account(CDS:mysql)"
+    },
+    {
+      "seq": 7,
+      "id": 38166,
+      "name": "mydb-feetrade-02.db.jdfin.local:3306:fee_trade(mysql)"
+    },
+    {
+      "seq": 8,
+      "id": 38167,
+      "name": "mydb-feetrade-01.db.jdfin.local:3306:fee_trade(mysql)"
+    },
+    {
+      "seq": 9,
+      "id": 38174,
+      "name": "mydb-msoaccount-02.db.jdfin.local:3306:mso_account(mysql)"
+    }
+  ]
+}

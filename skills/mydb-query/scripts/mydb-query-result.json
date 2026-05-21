@@ -1,0 +1,33 @@
+{
+  "success": null,
+  "errorCode": -1,
+  "errMsg": "执行出错 错误信息：[解析错误，SQL:SHOW TABLES ]; 具体原因：[Encountered \" <S_IDENTIFIER> \"SHOW \"\" at line 1, column 1.\nWas expecting one of:\n    \"SET\" ...\n    \"DROP\" ...\n    \"DELETE\" ...\n    \"INSERT\" ...\n    \"REPLACE\" ...\n    \"TRUNCATE\" ...\n    \"EXEC\" ...\n    \"EXECUTE\" ...\n    \"MERGE\" ...\n    \"COMMENT\" ...\n    \"SELECT\" ...\n    \"WITH\" ...\n    \"(\" ...\n    \"UPDATE\" ...\n    \"CREATE\" ...\n    \"ALTER\" ...\n    ]; 改写后SQL[SHOW TABLES ]",
+  "resultInfo": {
+    "types": {
+      "错误代码": "int(2)",
+      "错误信息": "VCHAR(410)"
+    },
+    "data": [
+      {
+        "错误信息": "执行出错 错误信息：[解析错误，SQL:SHOW TABLES ]; 具体原因：[Encountered \" <S_IDENTIFIER> \"SHOW \"\" at line 1, column 1.\nWas expecting one of:\n    \"SET\" ...\n    \"DROP\" ...\n    \"DELETE\" ...\n    \"INSERT\" ...\n    \"REPLACE\" ...\n    \"TRUNCATE\" ...\n    \"EXEC\" ...\n    \"EXECUTE\" ...\n    \"MERGE\" ...\n    \"COMMENT\" ...\n    \"SELECT\" ...\n    \"WITH\" ...\n    \"(\" ...\n    \"UPDATE\" ...\n    \"CREATE\" ...\n    \"ALTER\" ...\n    ]; 改写后SQL[SHOW TABLES ]",
+        "错误代码": -1
+      }
+    ],
+    "datasourceId": 16742
+  },
+  "total": 0,
+  "data": {
+    "types": {
+      "错误代码": "int(2)",
+      "错误信息": "VCHAR(410)"
+    },
+    "data": [
+      {
+        "错误信息": "执行出错 错误信息：[解析错误，SQL:SHOW TABLES ]; 具体原因：[Encountered \" <S_IDENTIFIER> \"SHOW \"\" at line 1, column 1.\nWas expecting one of:\n    \"SET\" ...\n    \"DROP\" ...\n    \"DELETE\" ...\n    \"INSERT\" ...\n    \"REPLACE\" ...\n    \"TRUNCATE\" ...\n    \"EXEC\" ...\n    \"EXECUTE\" ...\n    \"MERGE\" ...\n    \"COMMENT\" ...\n    \"SELECT\" ...\n    \"WITH\" ...\n    \"(\" ...\n    \"UPDATE\" ...\n    \"CREATE\" ...\n    \"ALTER\" ...\n    ]; 改写后SQL[SHOW TABLES ]",
+        "错误代码": -1
+      }
+    ],
+    "datasourceId": 16742
+  },
+  "resultSetIndex": 0
+}
